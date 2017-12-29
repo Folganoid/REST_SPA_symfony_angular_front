@@ -1,0 +1,16 @@
+<h1 class="text-primary">Posts</h1>
+
+<div *ngFor="let p of posts.result">
+
+  <div class="card">
+    <div class="card-header">
+      {{ p.title }}
+    </div>
+
+    <div class="card-block">
+      {{p.description}}
+    </div>
+  </div>
+  <br>
+
+</div>

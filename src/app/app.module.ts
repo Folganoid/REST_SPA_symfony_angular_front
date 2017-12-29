@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -12,13 +12,14 @@ import {AuthService} from './auth.service';
 import {PostService} from './post.service';
 import {AuthGuard} from './auth.guard';
 import {Routes, RouterModule} from '@angular/router';
+import {HttpModule} from '@angular/http';
 
 const routes: Routes = [
     {path: '', component : AppComponent},
     {path: 'login', component : LoginComponent},
-    {path: 'posts', component : PostComponent},
-    {path: 'add-post', component : AddPostComponent},
-    {path: 'edit-post', component : EditPostComponent},
+    {path: 'posts', component : PostComponent, canActivate: [AuthGuard]},
+    {path: 'add-post', component : AddPostComponent, canActivate: [AuthGuard]},
+    {path: 'edit-post', component : EditPostComponent, canActivate: [AuthGuard]},
     {path: 'login', component : LoginComponent},
     ];
 
@@ -33,7 +34,10 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-      RouterModule.forRoot(routes)
+      RouterModule.forRoot(routes),
+      HttpModule,
+      FormsModule
+
   ],
   providers: [AuthService, PostService, AuthGuard],
   bootstrap: [AppComponent]
