@@ -20,7 +20,7 @@ export class PostService {
   }
 
   addPost(post: Post) {
-      const headers = new Headers({"Authorization": "Bearer" + this.authenticationService.token});
+      const headers = new Headers();
       headers.append('content-type', 'application/json');
       headers.append('Authorization', "Bearer " + this.authenticationService.token);
       return this.http.post(this.uri, JSON.stringify(post), {headers: headers}).map(res => res.json()).catch(this.handelError);

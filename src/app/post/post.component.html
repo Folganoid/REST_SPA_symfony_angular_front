@@ -10,6 +10,8 @@
     <div class="card-block">
       {{p.description}}
     </div>
+    <a href="/edit-post/{{p.id}}" class="btn btn-success">Edit post</a>
+    <button (click)="deletePost(p.id)" class="btn btn-primary">Delete</button>
   </div>
   <br>
 

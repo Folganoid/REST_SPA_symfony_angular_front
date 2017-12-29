@@ -23,4 +23,11 @@ export class PostComponent implements OnInit {
     this.getPosts();
   }
 
+  deletePost(id) {
+    this._postService.deletePost(id).subscribe(
+        result => {
+          window.location.reload();
+        }
+    );
+  }
 }
